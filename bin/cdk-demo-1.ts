@@ -1,6 +1,10 @@
-#!/usr/bin/env node
-import * as cdk from 'aws-cdk-lib';
-import { CdkDemo1Stack } from '../lib/cdk-demo-1-stack';
+import { MineCraftStack } from '../lib/stacks/minecraft-stack';
+import { App } from 'aws-cdk-lib';
 
-const app = new cdk.App();
-new CdkDemo1Stack(app, 'CdkDemo1Stack');
+const app = new App();
+
+
+new MineCraftStack(app, 'MinecraftStack',
+{
+  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+});
