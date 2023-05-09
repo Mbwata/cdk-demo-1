@@ -372,7 +372,7 @@ echo "Enter a short one word label for a new or existing server (don't use minec
 echo "It will be used in the folder name and service name..."
 
 echo -n "What should the server be called?"
-read ServerName </dev/tty
+read ServerName
 
 # Remove non-alphanumeric characters from ServerName
 ServerName=$(echo "$ServerName" | tr -cd '[a-zA-Z0-9]._-')
