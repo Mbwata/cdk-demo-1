@@ -130,8 +130,7 @@ Update_Service() {
 
   sudo systemctl daemon-reload
 
-  echo -n "Start Minecraft server at startup automatically (y/n)?"
-  read answer </dev/tty
+  answer=y
   if [[ "$answer" != "${answer#[Yy]}" ]]; then
     sudo systemctl enable $ServerName.service
     # Automatic reboot at 4am configuration
