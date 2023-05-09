@@ -57,5 +57,6 @@
       }
     ]
   },
-  "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=ubuntu/images/hvm-ssd/ubuntu-focal-20.04-arm64-server-*:filters.state.0=available:owners.0=099720109477:region=us-east-1": "ami-07cd31309bf4e22f9"
+  "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=ubuntu/images/hvm-ssd/ubuntu-focal-20.04-arm64-server-*:filters.state.0=available:owners.0=099720109477:region=us-east-1": "ami-07cd31309bf4e22f9",
+  "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=RHEL-8*_HVM-*-arm64-*-Hourly2-GP2:filters.state.0=available:owners.0=309956199498:region=us-east-1": "ami-05e7f2d065c8410af"
 }
