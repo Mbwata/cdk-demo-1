@@ -139,7 +139,6 @@ Update_Service() {
     CurrentTime=$(date)
     echo "Your time zone is currently set to $TimeZone.  Current system time: $CurrentTime"
     echo "You can adjust/remove the selected reboot time later by typing crontab -e or running SetupMinecraft.sh again."
-    echo -n "Automatically restart and backup server at 4am daily (y/n)?"
     answer=y
     if [[ "$answer" != "${answer#[Yy]}" ]]; then
       croncmd="$DirName/minecraftbe/$ServerName/restart.sh 2>&1"
