@@ -11,8 +11,6 @@ export class MineCraftStack extends cdk.Stack {
             vpc: ec2.Vpc.fromLookup(this, 'vpc', {
                 vpcId: 'vpc-19186463'
             }),
-            os: 'ubuntu',
-            //arch: 'arm64'
         })
         //add ingress rules
         minecraftServer.securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(22), 'allow ssh access');

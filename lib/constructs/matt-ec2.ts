@@ -22,7 +22,7 @@ export class MattEc2 extends Construct {
 
         const ami = props.os === 'rhel' ?
             ec2.MachineImage.lookup({
-                name: `RHEL-8*_HVM-*-${props.arch === 'arm64' ? 'arm64' : 'x86_64'}-*-Hourly2-GP2`,
+                name: `RHEL-9*_HVM-*-${props.arch === 'arm64' ? 'arm64' : 'x86_64'}-*-Hourly2-GP2`,
                 owners: ['309956199498'], // Red Hat
             }) : ec2.MachineImage.lookup({
                 name: `ubuntu/images/hvm-ssd/ubuntu-focal-20.04-${props.arch === 'arm64' ? 'arm64' : 'amd64'}-server-*`,
@@ -30,7 +30,7 @@ export class MattEc2 extends Construct {
             })
 
         const instanceClass = props.arch === 'arm64' ? InstanceClass.T4G : InstanceClass.T2
-        const instanceSize = props?.instanceSize ?? InstanceSize.NANO
+        const instanceSize = props?.instanceSize ?? InstanceSize.SMALL
         this.securityGroup = new ec2.SecurityGroup(this, 'EC2SecurityGroup', {
             vpc: props.vpc,
             allowAllOutbound: true,
