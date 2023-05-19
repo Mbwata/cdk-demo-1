@@ -64,5 +64,55 @@
   "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=RHEL-9*_HVM-*-x86_64-*-Hourly2-GP2:filters.state.0=available:owners.0=309956199498:region=us-east-1": "ami-026ebd4cfe2c043b2",
   "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=RHEL-9*_HVM-*-arm64-*-Hourly2-GP2:filters.state.0=available:owners.0=309956199498:region=us-east-1": "ami-03d6a5256a46c9feb",
   "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=RHEL-9.0*_HVM-*-arm64-*-Hourly2-GP2:filters.state.0=available:owners.0=309956199498:region=us-east-1": "ami-0492aaaa8772e137a",
-  "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=RHEL-9.0*_HVM-*-arm64-43-Hourly2-GP2:filters.state.0=available:owners.0=309956199498:region=us-east-1": "ami-007cf291af489ad4d"
+  "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=RHEL-9.0*_HVM-*-arm64-43-Hourly2-GP2:filters.state.0=available:owners.0=309956199498:region=us-east-1": "ami-007cf291af489ad4d",
+  "vpc-provider:account=812438335467:filter.isDefault=true:region=us-east-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-19186463",
+    "vpcCidrBlock": "172.31.0.0/16",
+    "ownerAccountId": "812438335467",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-c23fcf8f",
+            "cidr": "172.31.16.0/20",
+            "availabilityZone": "us-east-1a",
+            "routeTableId": "rtb-58a75c26"
+          },
+          {
+            "subnetId": "subnet-d2cfe28e",
+            "cidr": "172.31.32.0/20",
+            "availabilityZone": "us-east-1b",
+            "routeTableId": "rtb-58a75c26"
+          },
+          {
+            "subnetId": "subnet-76587811",
+            "cidr": "172.31.0.0/20",
+            "availabilityZone": "us-east-1c",
+            "routeTableId": "rtb-58a75c26"
+          },
+          {
+            "subnetId": "subnet-28f6d906",
+            "cidr": "172.31.80.0/20",
+            "availabilityZone": "us-east-1d",
+            "routeTableId": "rtb-58a75c26"
+          },
+          {
+            "subnetId": "subnet-9180f4af",
+            "cidr": "172.31.48.0/20",
+            "availabilityZone": "us-east-1e",
+            "routeTableId": "rtb-58a75c26"
+          },
+          {
+            "subnetId": "subnet-84213b8b",
+            "cidr": "172.31.64.0/20",
+            "availabilityZone": "us-east-1f",
+            "routeTableId": "rtb-58a75c26"
+          }
+        ]
+      }
+    ]
+  }
 }

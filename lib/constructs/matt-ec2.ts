@@ -10,7 +10,7 @@ export enum EnvType {
 
 export interface ec2Props {
     readonly instanceSize?: InstanceSize;
-    readonly vpc: ec2.IVpc
+    readonly vpcID?: string
     readonly arch?: 'arm64' | 'amd64'
     readonly os?: 'rhel' | 'ubuntu'
     readonly rsaKey?: ec2.CfnKeyPair
@@ -35,19 +35,21 @@ export class MattEc2 extends Construct {
                 owners: ['099720109477'], // Canonical
             })
 
+        const vpc = ec2.Vpc.fromLookup(this, 'vpc', { vpcId: props.vpcID } ?? { isDefault: true });
         const instanceClass = props.arch === 'arm64' ? InstanceClass.T4G : InstanceClass.T2
         const instanceSize = props?.envType === EnvType.PROD ? InstanceSize.LARGE : props?.envType === EnvType.TEST ? InstanceSize.MEDIUM : InstanceSize.SMALL
         this.securityGroup = new ec2.SecurityGroup(this, 'EC2SecurityGroup', {
-            vpc: props.vpc,
+            vpc: vpc,
             allowAllOutbound: true,
         });
+        
         this.ec2instance = new ec2.Instance(this, 'EC2Instance', {
             instanceType: InstanceType.of(instanceClass, instanceSize),
-            vpc: props.vpc,
+            vpc: vpc,
             machineImage: ami,
             securityGroup: this.securityGroup,
             keyName: 'new-key',
-        
+
         });
     }
 };
