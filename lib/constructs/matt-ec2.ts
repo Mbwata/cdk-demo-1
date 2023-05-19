@@ -2,13 +2,19 @@ import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import { InstanceClass, InstanceSize, InstanceType, SecurityGroup } from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
 
+export enum EnvType {
+    DEV,
+    TEST,
+    PROD,
+};
+
 export interface ec2Props {
     readonly instanceSize?: InstanceSize;
-    //readonly instanceClass?: InstanceClass;
     readonly vpc: ec2.IVpc
     readonly arch?: 'arm64' | 'amd64'
     readonly os?: 'rhel' | 'ubuntu'
     readonly rsaKey?: ec2.CfnKeyPair
+    readonly envType?: EnvType
 };
 
 export class MattEc2 extends Construct {
@@ -30,7 +36,7 @@ export class MattEc2 extends Construct {
             })
 
         const instanceClass = props.arch === 'arm64' ? InstanceClass.T4G : InstanceClass.T2
-        const instanceSize = props?.instanceSize ?? InstanceSize.SMALL
+        const instanceSize = props?.envType === EnvType.PROD ? InstanceSize.LARGE : props?.envType === EnvType.TEST ? InstanceSize.MEDIUM : InstanceSize.SMALL
         this.securityGroup = new ec2.SecurityGroup(this, 'EC2SecurityGroup', {
             vpc: props.vpc,
             allowAllOutbound: true,
