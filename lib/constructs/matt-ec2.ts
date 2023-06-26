@@ -35,14 +35,22 @@ export class MattEc2 extends Construct {
                 owners: ['099720109477'], // Canonical
             })
 
-        const vpc = ec2.Vpc.fromLookup(this, 'vpc', { vpcId: props.vpcID } ?? { isDefault: true });
+        let vpc
+
+        if (props.vpcID === undefined) {
+            vpc = ec2.Vpc.fromLookup(this, 'vpc', { isDefault: true });
+        } else {
+            vpc = ec2.Vpc.fromLookup(this, 'vpc', { vpcId: props.vpcID });
+        }
+
+        //const vpc = ec2.Vpc.fromLookup(this, 'vpc', {vpcId: props.vpcID } ?? { isDefault: true });
         const instanceClass = props.arch === 'arm64' ? InstanceClass.T4G : InstanceClass.T2
         const instanceSize = props?.envType === EnvType.PROD ? InstanceSize.LARGE : props?.envType === EnvType.TEST ? InstanceSize.MEDIUM : InstanceSize.SMALL
         this.securityGroup = new ec2.SecurityGroup(this, 'EC2SecurityGroup', {
             vpc: vpc,
             allowAllOutbound: true,
         });
-        
+
         this.ec2instance = new ec2.Instance(this, 'EC2Instance', {
             instanceType: InstanceType.of(instanceClass, instanceSize),
             vpc: vpc,
