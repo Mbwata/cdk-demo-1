@@ -10,7 +10,7 @@ export class ApacheStack extends cdk.Stack {
         const env = EnvType.TEST;
 
         const apacheServer = new MattEc2(this, 'ApacheEC2', {
-            //vpcID:'vpc-01bc20224126c45a0',
+            vpcID:'vpc-01bc20224126c45a0',
             os: 'rhel',
             arch: 'arm64',
             envType: env

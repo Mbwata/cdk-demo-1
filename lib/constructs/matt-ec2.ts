@@ -35,15 +35,7 @@ export class MattEc2 extends Construct {
                 owners: ['099720109477'], // Canonical
             })
 
-        let vpc
-
-        if (props.vpcID === undefined) {
-            vpc = ec2.Vpc.fromLookup(this, 'vpc', { isDefault: true });
-        } else {
-            vpc = ec2.Vpc.fromLookup(this, 'vpc', { vpcId: props.vpcID });
-        }
-
-        //const vpc = ec2.Vpc.fromLookup(this, 'vpc', {vpcId: props.vpcID } ?? { isDefault: true });
+        const vpc = props.vpcID === undefined ? ec2.Vpc.fromLookup(this, 'vpc', { isDefault: true }): ec2.Vpc.fromLookup(this, 'vpc', { vpcId: props.vpcID });
         const instanceClass = props.arch === 'arm64' ? InstanceClass.T4G : InstanceClass.T2
         const instanceSize = props?.envType === EnvType.PROD ? InstanceSize.LARGE : props?.envType === EnvType.TEST ? InstanceSize.MEDIUM : InstanceSize.SMALL
         this.securityGroup = new ec2.SecurityGroup(this, 'EC2SecurityGroup', {
