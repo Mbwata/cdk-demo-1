@@ -12,7 +12,7 @@ export interface ec2Props {
     readonly instanceSize?: InstanceSize;
     readonly vpcID?: string
     readonly arch?: 'arm64' | 'amd64'
-    readonly os?: 'rhel' | 'ubuntu'
+    readonly os?: 'rhel' | 'ubuntu' | 'centos'
     readonly rsaKey?: ec2.CfnKeyPair
     readonly envType?: EnvType
 };
@@ -30,7 +30,11 @@ export class MattEc2 extends Construct {
             ec2.MachineImage.lookup({
                 name: `RHEL-9*_HVM-*-${props.arch === 'arm64' ? 'arm64' : 'x86_64'}-*-Hourly2-GP2`,
                 owners: ['309956199498'], // Red Hat
-            }) : ec2.MachineImage.lookup({
+            }) : props.os === 'centos' ?
+            ec2.MachineImage.lookup({
+                name: `CentOS Linux 7 ${props.arch === 'arm64' ? 'aarch64' : 'x86_64'} - 2211`,
+                owners: ['125523088429'],
+            }): ec2.MachineImage.lookup({
                 name: `ubuntu/images/hvm-ssd/ubuntu-focal-20.04-${props.arch === 'arm64' ? 'arm64' : 'amd64'}-server-*`,
                 owners: ['099720109477'], // Canonical
             })
