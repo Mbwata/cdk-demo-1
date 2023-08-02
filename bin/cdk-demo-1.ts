@@ -1,5 +1,6 @@
 import { ApacheStack } from '../lib/stacks/apache-stack';
 import { MineCraftStack } from '../lib/stacks/minecraft-stack';
+import { NexusStack } from '../lib/stacks/nexus-stack';
 import { App } from 'aws-cdk-lib';
 
 const app = new App();
@@ -10,7 +11,12 @@ const app = new App();
 //   env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
 // });
 
-new ApacheStack(app, 'ApacheStack',
+// new ApacheStack(app, 'ApacheStack',
+// {
+//   env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+// });
+
+new NexusStack(app, 'NexusStack',
 {
   env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
 });
