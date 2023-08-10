@@ -164,5 +164,7 @@
         ]
       }
     ]
-  }
+  },
+  "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=CentOS Linux 7 x86_64 - 2211:filters.state.0=available:owners.0=125523088429:region=us-east-1": "ami-0aedf6b1cb669b4c7",
+  "ami:account=812438335467:filters.image-type.0=machine:filters.name.0=CentOS Linux 7 aarch64 - 2211:filters.state.0=available:owners.0=125523088429:region=us-east-1": "ami-0144a5a84f5699847"
 }
